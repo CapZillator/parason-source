@@ -76,5 +76,10 @@ self.addEventListener('message', (event) => {
     self.skipWaiting();
   }
 });
-
 // Any other custom service worker logic can go here.
+/*
+self.addEventListener('fetch', (event) => {
+  console.log('!!!! Catching the fetch');
+  console.log(event);
+});
+*/

@@ -1,0 +1,322 @@
+@keyframes rotateLoader {
+    0% {
+        transform-origin: center;
+        transform: rotate(0deg) ;
+    }
+    100% {
+        transform-origin: center;
+        transform: rotate(360deg);
+    }
+}
+.App {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+}
+//Стили лоадера
+.Main-Loader-Wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: #0e1b31;
+    
+    .Main-Loader-Container {
+        position: relative;
+        width: auto;
+        height: auto;
+        
+        .Main-Loader {
+            fill: #fff;
+            width: 6rem;
+            height: 6rem;
+            animation: rotateLoader 3s infinite;
+        }
+    }
+}
+/* Фон контейнера текущей погоды */
+.Day_wrapper {
+    background: linear-gradient(#0e1b31, #192f57);
+}
+.Night_wrapper {
+    background: linear-gradient(#03070e, #111b2e);
+}
+.Morning_twilight_wrapper {
+    background: linear-gradient(#0e1b31, rgb(180, 97, 41));
+}
+.Evening_twilight_wrapper {
+    background: linear-gradient(#0e1b31, rgb(180, 58, 58));
+}
+// Контейнер текущей погоды
+.Main-current-weather-wrapper {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(4, auto);
+    gap: .5rem;
+    grid-template-areas:
+    "Search-wrapper Indicators-wrapper Chart-wrapper"
+    "Current-wrapper Indicators-wrapper Chart-wrapper"
+    "Current-wrapper Sunchart-wrapper Chart-wrapper"
+    "Circle-indicators-wrapper Circle-indicators-wrapper Chart-wrapper";
+    padding: 0.5rem 0;
+    max-width: 1600px;
+
+    @media screen and(max-width: 1200px){
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, auto);
+        grid-template-areas:
+        "Search-wrapper"
+        "Current-wrapper"
+        "Indicators-wrapper"
+        "Circle-indicators-wrapper"
+        "Sunchart-wrapper"
+        "Chart-wrapper";
+    }
+}
+.Search-wrapper {
+    grid-area: Search-wrapper;
+    position: relative;
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.Current-wrapper {
+    grid-area: Current-wrapper;
+    position: relative;
+    
+    p {
+        margin: 0;
+    }
+}
+.Indicators-wrapper {
+    grid-area: Indicators-wrapper;
+    align-self: center;
+    //background-color: #3d9c706e;
+}
+.Sunchart-wrapper {
+    grid-area: Sunchart-wrapper;
+    //background-color: #789c3d6e;
+    align-self: center;
+}
+.Circle-indicators-wrapper {
+    grid-area: Circle-indicators-wrapper;
+}
+.Chart-wrapper {
+    grid-area: Chart-wrapper;
+    align-self: center;
+}
+/* Стили иконок */
+.Icon-menu {
+    width: 2rem;
+    height: 2rem;
+    margin: 1rem 0 .5rem 0;
+}
+.Icon-wrapper {
+    width: 3rem;
+    height: 3rem;
+}
+.Icon-el {
+    stroke: #fff;
+    fill: #fff;
+}
+/* Стили блока поиска города */
+.Head-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+    fill: #fff;
+    margin: .5em 1rem;
+}
+.Search {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 15rem;
+    margin: 0 auto;
+}
+.Search-focus-on, .Search-focus-off {
+    transition: .5s;
+}
+.Search-focus-on {
+    background-color: rgba(0,0,0,.5);
+}
+.Search-focus-off {
+    background-color: rgba(0,0,0,.3);
+}
+.Search-icon {
+    width: 1rem;
+    height: 1rem;
+    margin-left: .75rem;
+}
+.Search-clear  {
+    width: 1rem;
+    height: 1rem;
+    margin-right: .75rem;
+    transition: .5s;
+}
+.Search-clear:hover  {
+    transform: scale(1.2);
+}
+.Search-icon-el, .Clear-icon-el {
+    fill: #fff;
+}
+.Search-input {
+    background-color: rgba(0,0,0,.0);
+    font-size: 1.1rem;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: .5rem .75rem;
+    transition: .4s;
+    letter-spacing: .1rem;
+    width: 10rem;
+}
+.Search-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+.Search-result-wrapper {
+    position: absolute;
+    left: 50%;
+    margin: 0;
+    padding: 0;
+    width: 15rem;
+    list-style: none;
+    background-color: rgba(0,0,0,.9);
+    transform: translateX(-50%);
+    z-index: 20;
+    text-align: left;
+    font-size: 1.1rem;
+
+    a, a:visited, :active {
+        color: #fff;
+        text-decoration: none;
+        transition: .5s;
+        
+    }
+    a:hover {
+        color: #8a9fdd;
+    }
+
+    li {
+        margin: .25rem .5rem;
+       
+    }
+}
+.AddFavouriteCityWrapperVisible, .AddFavouriteCityWrapperHidden {
+    position: absolute;
+    width: auto;
+    left: 50%;
+    z-index: +1;
+    background: #2f3852;
+    padding: .25rem 1rem;
+    box-shadow: 0 0 .2rem .1rem rgba(255,255,255,.1);
+    transform-origin: left;
+    transform: scale(100%) translateX(-50%);
+    transition: .5s;
+    text-align: center;
+    margin-top: 1rem;
+
+    h4 {
+        font-size: 1.1rem;
+        margin: 0;
+        padding: 0;
+        max-width: 10rem;
+    }
+}
+.AddFavouriteCityWrapperHidden {
+    //display: none;
+    transform: scale(0%) translateX(-50%);
+}
+.Input-favourites {
+    background-color: rgba(255,255,255,.2);
+    font-size: 1.1rem;
+    color: #fff;
+    border: none;
+    outline: none;
+    padding: .25rem .5rem;
+    transition: .4s;
+    letter-spacing: .1rem;
+    width: 9rem;
+    margin-top: .5rem;
+}
+.Input-favourites::placeholder {
+    color: rgba(255,255,255,.6);
+}
+.Confirm-button {
+    background-color: #0e1b31;
+    font-weight: 500;
+    width: 10rem;
+    margin: .5rem auto .25rem auto;
+    padding: .25rem 0;
+    text-transform: uppercase;
+    cursor: pointer;
+    letter-spacing: .1rem;
+    transition: .5s;
+
+    &:hover {
+        box-shadow: inset 0 0 0 1rem #ffffff0a;
+        transition: .5s;
+    }
+}
+.Weather-Icon-Wrapper {
+    width: 5rem;
+    height: 5rem;
+    fill: #fff;
+}
+.Main-Footer {
+    background-color: rgb(16, 16, 19);
+    margin: 0;
+    padding: 1rem 0;
+
+    p {
+        margin : .2rem 0;
+    }
+
+    .Main-Footer-Container {
+        max-width: 2000px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 2rem;
+
+        .Main-Footer-Geolocation {
+            text-align: left;
+
+            p {
+                font-size: .8rem;
+                max-width: 30rem;
+            }
+        }
+        @media screen and(min-width: 2000px){
+            margin: 0 auto;
+        }
+    }
+
+}
+.Main-Logo {
+    width: 5rem;
+    height: 5rem;
+    fill: #fff;
+    transition: .5s;
+    margin-right: 2rem;
+
+    &:hover {
+        fill: #737fa1;
+    }
+
+    @media screen and(max-width: 960px){
+        width: 3rem;
+        height: 3rem;
+    }
+}

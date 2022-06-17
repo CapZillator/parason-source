@@ -1,0 +1,242 @@
+@import '../styles/index.scss';
+@import '../styles/Main.scss';
+$chart-precip-black: #000000;
+@keyframes vaneRotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+.Chart-component {
+    max-width: 40rem;
+    height: auto;
+    @media screen and(max-width: 960px){
+      max-width: 90vw;
+    }
+}
+.PathTMax {
+    stroke: none;
+  }
+  .TText,
+  .PrecipText,
+  .PressText,
+  .DateText,
+  .DayText {
+    text-anchor: middle;
+    fill: #ffffff;
+    font-size: 1.4rem;
+  }
+  .TText {
+    font-weight: bolder;
+  }
+  .PrecipText {
+    fill: #ffffff7a;
+  }
+  .LegendText,
+  .LegendTextTMax,
+  .LegendTextTMin,
+  .LegendTextPrecip
+   {
+    fill: #ffffff;
+    font-size: 1.4rem;
+  }
+  .LegendTextPrecip {
+    fill: #ffffff7a;
+  }
+  .PrecipColumn {
+    fill: rgba(0, 0, 0, 0.7);
+    stroke: rgba(0, 0, 0, 0.5);
+    stroke-width: 2;
+  }
+  .PressureColumn {
+    fill: rgba(255, 255, 255, 0.15);
+    stroke: rgba(255, 255, 255, 0.15);
+    stroke-width: 2;
+  }
+  .PathTMin{
+    fill: none;
+    //stroke: #0f1013;
+    stroke: #161616;
+  }
+  .PointsTMin {
+    stroke: none;
+    //fill: #0f1013;
+    fill: #161616;
+  }
+/* Стили круговой диаграммы */
+@keyframes Circle-chart-fill {
+    to { stroke-dasharray: 0 100; }
+}
+.Circle {
+    max-width: 10rem;
+    max-height: 10rem;
+}
+.Circle-hole {
+    fill: transparent;
+}
+.Circle-ring {
+    stroke: #ffffff60;
+    stroke-width: 3.5;
+    fill: transparent;
+}
+
+.Circle-segment {
+    animation: Circle-chart-fill 1s reverse ease-in;
+    transform-origin: center;
+    stroke-width: 3.5;
+    fill: transparent;
+    stroke: $white-main;
+}
+
+.Circle-icon {
+    fill: $white-main;
+}
+
+.Circle-text {
+    font-family: Arial, Helvetica, sans-serif;
+    fill: $white-main;
+}
+
+.Circle-label {
+    font-size: 0.28em;
+    font-weight: 700;
+    line-height: 1;
+    fill: #000;
+    transform: translateY(0.25em);    
+}
+
+.Circle-percent {
+    font-size: 0.4em;
+    fill: $white-main;
+    line-height: 1;
+    transform: translateY(0.4em);
+}
+/* Стили астро диаграммы */
+.Astro {
+    width: 20rem;
+    height: 8rem;
+}
+.Astro-chart-el {
+    stroke: $white-main;
+    fill: $white-main;
+    color: $white-main;
+}
+.Astro-text {
+    font-size: 0.25em;
+    font-weight: 500;
+    fill: $white-main;
+}
+.Astro-small {
+  width: 12.5rem;
+  height: 5rem;
+}
+/* Стиль иконки направления ветра */
+.Wind-dir-icon {
+  width: 3rem;
+  height: 3rem;
+}
+.Wind-dir-path {
+  fill: #ffffff;
+}
+.Wind-dir-N {
+  transform-origin: center;
+  transform: rotate(180deg);
+}
+.Wind-dir-NE {
+  transform-origin: center;
+  transform: rotate(225deg);
+}
+.Wind-dir-E {
+  transform-origin: center;
+  transform: rotate(-90deg);
+}
+.Wind-dir-SE {
+  transform-origin: center;
+  transform: rotate(-45deg);
+}
+.Wind-dir-S {
+  transform-origin: center;
+}
+.Wind-dir-SW {
+  transform-origin: center;
+  transform: rotate(45deg);
+}
+.Wind-dir-W {
+  transform-origin: center;
+  transform: rotate(90deg);
+}
+.Wind-dir-NW {
+  transform-origin: center;
+  transform: rotate(135deg);
+}
+
+/* Стили ветряков */
+.Windmill-wrapper {
+  width: 8rem;
+  height: 8rem;
+  margin-left: 1rem;
+}
+.Windmill-column-big {
+  fill: rgba(255,255,255,.6);
+}
+.Windmill-column-small {
+  fill: rgba(255,255,255,.4);
+}
+.Windmill-vane-big {
+  fill: rgba(255,255,255,1);
+  transform-origin: 34% 34%;
+  animation: vaneRotate linear infinite;
+}
+.Windmill-vane-small {
+  fill: rgba(255,255,255,.9);
+  transform-origin: 74.5% 50.5%;
+  animation: vaneRotate linear infinite;
+}
+.Windmill-axis-small {
+  fill: rgba(255,255,255,.8);
+}
+.Windmill-axis-big {
+  fill: rgba(255,255,255,1);
+}
+//Скорость вращения лопастей
+//Большой ветряк
+.Windmill-rotate-calm {
+  animation: none;
+}
+.Windmill-rotate-light {
+  animation-duration: 10s;
+}
+.Windmill-rotate-breeze {
+  animation-duration: 6s;
+}
+.Windmill-rotate-strong {
+  animation-duration: 4s;
+}
+.Windmill-rotate-gale {
+  animation-duration: 2s;
+}
+.Windmill-rotate-storm {
+  animation-duration: 1s;
+}
+//Маленький ветряк 
+.Windmill-small-rotate-calm {
+  animation: none;
+}
+.Windmill-small-rotate-light {
+  animation-duration: 9s;
+}
+.Windmill-small-rotate-breeze {
+  animation-duration: 5s;
+}
+.Windmill-small-rotate-strong {
+  animation-duration: 3s;
+}
+.Windmill-small-rotate-gale {
+  animation-duration: 2s;
+}
+.Windmill-small-rotate-storm {
+  animation-duration: .75s;
+}

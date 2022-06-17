@@ -1,0 +1,39 @@
+@import '../styles/index.scss';
+.Current-content {
+    
+}
+.Current-head-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.Current-head-icon {
+    fill: #fff;
+    height: 2rem;
+    width: 2rem;
+}
+.Temp-current {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+.Wind-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.Current-Beafort-Val {
+    background-color: $white-main;
+    color: $background-main-color;
+    padding: 0 .3em;
+    border-radius: .2rem;
+    font-weight: bolder;
+    margin-left: .5em;
+}
+.Current-weather-state {
+    font-size: 1.1rem;
+}
+.Current-weather-state::first-letter {
+    text-transform: uppercase;
+}

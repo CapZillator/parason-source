@@ -1,0 +1,217 @@
+.Forecast-wrapper {
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: fit-content;
+    max-width: 2000px;
+
+    @media screen and(min-width: 2000px){
+        justify-content: flex-start;
+    }
+}
+.Daily-Forecast-Wrapper {
+    position: relative;
+    height: 14rem;
+    width: 620px;
+    padding: .5rem 1rem;
+    display: grid;
+    grid-template-columns: 10rem 8rem 1fr 2fr;
+    grid-template-rows: repeat(4, auto);
+    gap: .5rem;
+    grid-template-areas:
+    "Header WIcon WindD AstroB"
+    "Temp WIcon WindD AstroB"
+    "OtherI OtherI OtherI OtherI";
+
+    @media screen and(max-width: 640px){
+        width: 100%;
+        height: auto;
+    }
+
+    @media screen and(max-width: 640px){
+        grid-template-columns: 10rem 1fr;
+        grid-template-rows: repeat(4, auto);
+        gap: .5rem;
+        grid-template-areas:
+        "Header WindD"
+        "Temp WIcon"
+        "OtherI OtherI"
+        "AstroB AstroB";
+    }
+    @media screen and(max-width: 1280px){
+        &:nth-of-type(odd){
+            background-color: rgba(255, 255, 255, 0.055);
+        }
+    }
+    @media screen and(min-width: 1280px) and(max-width: 1800px){
+        &:nth-of-type(4n), 
+        &:nth-of-type(4n + 1){
+            background-color: rgba(255, 255, 255, 0.055);
+        }
+    }
+    @media screen and(min-width: 1960px){
+        &:nth-of-type(odd){
+            background-color: rgba(255, 255, 255, 0.055);
+        }
+    }
+}
+
+
+.Daily-Forecast-Header {
+    grid-area: Header;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    p {
+        margin: 0;
+        text-align: left;
+        font-size: 1.1em;
+        line-height: 1.1em;
+    }
+    .Daily-forecast-Date-Val {
+        margin-right: .5rem;
+        background-color: #fff;
+        color: #0e1b31;
+        font-size: 1.5em;
+        font-weight: bolder;
+        padding: .1rem .3rem;
+        border-radius: .2rem;
+    }
+}
+.Daily-Forecast-Temp {
+    grid-area: Temp;
+    align-self: end;
+
+    > div {
+        margin: .5rem 0;
+    }
+    @media screen and(max-width: 640px){
+        align-self: center;
+    }
+}
+.Daily-Forecast-WeatherDesc {
+    grid-area: WIcon;
+    align-self: end;
+    justify-self: center;
+}
+.Daily-Forecast-Wind {
+    grid-area: WindD;
+    align-self: end;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    
+    .Wind-dir-icon-forecast {
+        width: 2.5rem;
+        height: 2.5rem;
+        fill: #fff;
+        margin-bottom: 1.5rem;
+    }
+    
+    @media screen and(max-width: 640px){
+        align-self: center;
+        flex-direction: row;
+
+        .Wind-dir-icon-forecast {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-bottom: 0;
+            margin-right: 1rem;
+        }
+    }
+}
+.Daily-Forecast-OtherIndicators {
+    grid-area: OtherI;
+    align-self: end;
+    justify-self: center;
+    justify-self: start;
+    display: flex;
+    flex-direction: row;
+
+    @media screen and(max-width: 640px){
+        width: 100%;
+        justify-self: center;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+}
+.Daily-Forecast-Astro {
+    grid-area: AstroB;
+    align-self: end;
+    justify-self: center;
+    @media screen and(max-width: 640px){
+        margin-top: 1rem;
+    }
+}
+.Daily-Forecast-Temp-Content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 8rem;
+}
+.Daily-Forecast-Temp-Content::first-letter,
+.Daily-Forecast-Astro-Moonphase-Val::first-letter,
+.Daily-Forecast-WeatherDesc-Val::first-letter {
+    text-transform: uppercase;
+}
+.Daily-Forecast-WeatherDesc-Val {
+    margin-bottom: .5rem;
+}
+.Daily-Forecast-Wind-Val {
+    margin-bottom: .5rem;
+    @media screen and(max-width: 640px){
+        margin-bottom: 0;
+    }
+}
+.Daily-Forecast-Astro-Moonphase-Val {
+    margin: 0 0 1rem 0;
+}
+.Daily-Forecast-OtherIndicators-Wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 2rem;
+
+    &:first-of-type {
+        margin-left: 0;
+    }
+
+    @media screen and(max-width: 640px){
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+.Daily-Forecast-Icon-Small {
+    fill: #fff;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: .5rem;
+    
+    @media screen and(max-width: 640px){
+        margin-right: 0;
+    }
+}
+.Moon-Forecast-Icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    fill: #fff;
+}
+.Moon-Icon-Shadow {
+    fill: #0e1b31da;
+}
+
+.Weather-Icon-Wrapper-Forecast {
+    width: 4rem;
+    height: 4rem;
+    fill: #fff;
+    margin-bottom: 1rem;
+}
