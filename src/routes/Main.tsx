@@ -56,8 +56,14 @@ function Main() {
     let touchendX = 0
     
     const checkDirection = () => {
-      if (touchendX < touchstartX) setMenuState(true);
-      if (touchendX > touchstartX) setMenuState(false);
+      if (touchendX < touchstartX) {
+        if ((touchstartX - touchendX) > 100) setMenuState(true);
+      };
+      if (touchendX > touchstartX) {
+        if ((touchendX - touchstartX) > 100) setMenuState(false);
+      };
+      //if (touchendX < touchstartX) setMenuState(true);
+      //if (touchendX > touchstartX) setMenuState(false);
     }
     const handleClickOutside = (event: any) => {
       if (addFavRef.current && !addFavRef.current.contains(event.target)) {
