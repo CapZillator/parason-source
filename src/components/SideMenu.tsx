@@ -113,6 +113,15 @@ function SideMenu(props: any) {
                 </button>
             </div>
             <div>
+                <Press wrapper={"Icon-menu"}/>
+                <button title={'hpa'} onClick={setPressUnits} className={`${pressUnitsClassName[0]} Side-Menu-Button-Third-Row`}>
+                    {lang.lib.units[state.uni.gen].press.hpa}
+                </button>
+                <button title={'hg'} onClick={setPressUnits} className={`${pressUnitsClassName[1]} Side-Menu-Button-Third-Row`}>
+                    {lang.lib.units[state.uni.gen].press.hg}
+                </button>
+            </div>
+            <div>
                 <Wind wrapper={"Icon-menu"}/>
                 <button title={'second'} onClick={setWindUnits} className={`${windSpeedUnitsClassName[0]} Side-Menu-Button-Second-Row`}>
                     {windSpeedTitles[0]}
@@ -122,15 +131,6 @@ function SideMenu(props: any) {
                 </button>
                 <button title={'knots'} onClick={setWindUnits} className={`${windSpeedUnitsClassName[2]} Side-Menu-Button-Second-Row`}>
                     {windSpeedTitles[2]}
-                </button>
-            </div>
-            <div>
-                <Press wrapper={"Icon-menu"}/>
-                <button title={'hpa'} onClick={setPressUnits} className={`${pressUnitsClassName[0]} Side-Menu-Button-Third-Row`}>
-                    {lang.lib.units[state.uni.gen].press.hpa}
-                </button>
-                <button title={'hg'} onClick={setPressUnits} className={`${pressUnitsClassName[1]} Side-Menu-Button-Third-Row`}>
-                    {lang.lib.units[state.uni.gen].press.hg}
                 </button>
             </div>
             {cl}
