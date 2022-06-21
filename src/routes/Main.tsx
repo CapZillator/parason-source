@@ -34,6 +34,7 @@ function useQuery() {
 }
 
 function Main() {
+  console.log('ENV: ' + process.env.APIKEY);
   let query = useQuery();
   let qLat = checkCoords(query.get('lat'), 1);
   let qLon = checkCoords(query.get('lon'), 2);
@@ -359,7 +360,7 @@ function Main() {
         <Logo wrapper='Main-Loader'/>
       </div>
     </div>;
-  }
+  };
   return (
     <div className='App'>
       <div ref={addSideMenuRef}>
