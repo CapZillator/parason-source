@@ -9,6 +9,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: $background-main-color;
   color: $white-main;
+  
 }
 .First-Letter-Uppercase::first-letter {
   text-transform: uppercase;

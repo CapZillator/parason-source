@@ -1,6 +1,6 @@
 {
   "short_name": "Parason.me",
-  "name": "Прогноз всегда под рукой",
+  "name": "Your forecast",
   "icons": [
     {
       "src": "favicon.ico",
@@ -21,5 +21,5 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#0e1b31",
-  "background_color": "#4a5f83"
+  "background_color": "#0e1b31"
 }

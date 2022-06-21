@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppContext } from '../store/context';
 import getLangPack from '../LangPack';
 import {convertToStringT, roundDigit, getWindDir, convertWindSpeedVal, convertDate} from '../Lib';
@@ -10,6 +10,7 @@ import Hum from './Icons/Hum';
 import Cloud from './Icons/Cloud';
 import UV from './Icons/UV';
 import PressForecast from './Icons/PressForecast';
+import Hint from './Hint';
 import '../styles/DailyForecast.scss';
 
 export default function ForecastSection(){
@@ -78,26 +79,26 @@ export default function ForecastSection(){
               <MoonPhase phase={d.moon_phase} lang={lang} wrapper='Moon-Forecast-Icon'/>
               <SunChart sunrise={d.sunrise} sunset={d.sunset} size='small'/>
             </div>
-            <div className='Daily-Forecast-OtherIndicators'>
+            <div className='Daily-Forecast-OtherIndicators' title={lang.lib.hint.hum}>
               <div className='Daily-Forecast-OtherIndicators-Wrapper'>
                 <Hum wrapper='Daily-Forecast-Icon-Small' />
                 <div>
                   {hum}%
                 </div>
               </div>
-              <div className='Daily-Forecast-OtherIndicators-Wrapper'>
+              <div className='Daily-Forecast-OtherIndicators-Wrapper' title={lang.lib.hint.cloud}>
                 <Cloud wrapper='Daily-Forecast-Icon-Small' />
                 <div>
                   {clouds}%
                 </div>
               </div>
-              <div className='Daily-Forecast-OtherIndicators-Wrapper'>
+              <div className='Daily-Forecast-OtherIndicators-Wrapper' title={lang.lib.hint.uv}>
                 <UV wrapper='Daily-Forecast-Icon-Small' />
                 <div>
                   {uvi}
                 </div>
               </div>
-              <div className='Daily-Forecast-OtherIndicators-Wrapper'>
+              <div className='Daily-Forecast-OtherIndicators-Wrapper' title={lang.lib.hint.pre}>
                 <PressForecast wrapper='Daily-Forecast-Icon-Small' />
                 <div>
                   {press} {lang.lib.units[state.uni.gen].press[state.uni.press]}

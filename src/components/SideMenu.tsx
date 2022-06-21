@@ -77,13 +77,10 @@ function SideMenu(props: any) {
     let pressUnitsClassName = [state.uni.press === 'hpa' ? 'Side-Menu-Button-Active': 'Side-Menu-Button', 
                                state.uni.press === 'hg' ? 'Side-Menu-Button-Active': 'Side-Menu-Button'];
     
-    let langOptionsList;
-    if (selectState){
-        let langOptions = getListOfLanguages().map((el) => {
-            return <li key={el.code} onClick={() => setNewLang(el.code)}>{el.label}</li>;
-        });
-        langOptionsList = <ul className='Lang-selector-ul'>{langOptions}</ul>;
-    }
+    let langOptions = getListOfLanguages().map((el) => {
+        return <li key={el.code} onClick={() => setNewLang(el.code)}>{el.label}</li>;
+    });
+    let langOptionsList =selectState ? <ul className='Lang-selector-ul'>{langOptions}</ul>: <ul className='Lang-selector-ul Lang-selector-ul-hide'>{langOptions}</ul>;
     let selectLanguage = <div onClick={onSelectLangClick} onBlur={onSelectLangClick} className='Side-menu-select-wrapper'>
             {lang.label}
             <Arrow wrapper={selectState ? 'Select-arrow-icon-reverse': 'Select-arrow-icon'} />

@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../store/context';
-import { roundDigit, parseCityFromDataArray, sunriseSunsetDayduration, getWindDir, convertWindSpeedVal, getBofortScaleVal, 
-    convertToStringT, convertAccuracyToString, checkCoords } from '../Lib';
+import { roundDigit } from '../Lib';
 import CircleChart from './CircleChart';
 import getLangPack from '../LangPack';
 import '../styles/Indicators.scss';

@@ -174,11 +174,13 @@
     margin: 0 0 1rem 0;
 }
 .Daily-Forecast-OtherIndicators-Wrapper {
+    position: relative;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
     margin-left: 2rem;
+    cursor: default;
 
     &:first-of-type {
         margin-left: 0;

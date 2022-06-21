@@ -70,9 +70,13 @@ $chart-precip-black: #000000;
 @keyframes Circle-chart-fill {
     to { stroke-dasharray: 0 100; }
 }
+.Circle-Single-Wrapper {
+  position: relative;
+}
 .Circle {
     max-width: 10rem;
     max-height: 10rem;
+    cursor: default;
 }
 .Circle-hole {
     fill: transparent;
@@ -95,9 +99,17 @@ $chart-precip-black: #000000;
     fill: $white-main;
 }
 
-.Circle-text {
+.Circle-text,
+.Hint-Text {
     font-family: Arial, Helvetica, sans-serif;
     fill: $white-main;
+}
+.Hint-Text {
+  opacity: 1;
+  transition: .5s;
+}
+.Hint-Text-Hide {
+  opacity: 0;
 }
 
 .Circle-label {
@@ -111,8 +123,22 @@ $chart-precip-black: #000000;
 .Circle-percent {
     font-size: 0.4em;
     fill: $white-main;
-    line-height: 1;
     transform: translateY(0.4em);
+}
+.Hint-Text-Val {
+    font-size: 0.25em;
+    fill: $white-main;
+}
+
+/* Стили всплывающих подсказок*/
+.Hint-Main {
+  //fill: rgba(0, 0, 0, 0.95);
+  fill: #0e1b31f8;
+  transition: .5s;
+}
+.Hint-Main-Hide {
+  fill: rgba(0, 0, 0, 0);
+
 }
 /* Стили астро диаграммы */
 .Astro {

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React from 'react';
 import HeavyRain from "./Icons/WeatherIcons/HeavyRain";
 import LiteRain from "./Icons/WeatherIcons/LiteRain";
 import ClearSkyDay from "./Icons/WeatherIcons/ClearSkyDay";

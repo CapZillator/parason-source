@@ -1,8 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../store/context';
-import { roundDigit, parseCityFromDataArray, sunriseSunsetDayduration, getWindDir, convertWindSpeedVal, getBofortScaleVal, 
-    convertToStringT, convertAccuracyToString, checkCoords } from '../Lib';
-import Mist from './Icons/WeatherIcons/Mist';
+import { convertToStringT } from '../Lib';
 import getLangPack from '../LangPack';
 import GetWeatherIcon from './GetWeatherIcon';
 import '../styles/CurrentWeather.scss';

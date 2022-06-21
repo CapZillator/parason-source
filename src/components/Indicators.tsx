@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../store/context';
-import { roundDigit, parseCityFromDataArray, sunriseSunsetDayduration, getWindDir, convertWindSpeedVal, getBofortScaleVal, 
-    convertToStringT, convertAccuracyToString, checkCoords } from '../Lib';
+import { getWindDir, convertWindSpeedVal, getBofortScaleVal } from '../Lib';
 import WindMill from './WindMill';
 import WindDir from './Icons/WindDir';
 import getLangPack from '../LangPack';

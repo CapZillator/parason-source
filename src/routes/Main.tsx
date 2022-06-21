@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext, useRef } from 'react';
 import { roundDigit, parseCityFromDataArray, convertAccuracyToString, checkCoords } from '../Lib';
-import { getIDBVal, setIDBVal, delIDBVal, getAllIDBVals, WeatherData, FavouriteCity, setUserSettings, 
+import { getIDBVal, setIDBVal, delIDBVal, getAllIDBVals, WeatherData, FavouriteCity, 
         getUserSettings, addToFavourites, delSingleCity, getFavoriteCitiesList } from '../IDBModule';
 import { Link, useLocation } from 'react-router-dom';
 import { setWeatherData, setFavourites, setGeneral, setUni, setLang } from '../store/reducer';
@@ -37,7 +37,6 @@ function Main() {
   let query = useQuery();
   let qLat = checkCoords(query.get('lat'), 1);
   let qLon = checkCoords(query.get('lon'), 2);
-  console.log(`init la: ${qLat} init ln: ${qLon}`);
   const [ menuState, setMenuState ] = useState<boolean>(false);
   const { state, dispatch } = useContext(AppContext);
   const [ searchResult, setSearchResult ] = useState<Array<any>>([]);
@@ -109,6 +108,7 @@ function Main() {
       document.removeEventListener('click', handleClickOutside , true);
     };
   }, [onlineStatus, urlParams, addFavRef, addSideMenuRef]);
+  
   ///Async main func
   const dataManager = async () => {
 
@@ -133,12 +133,8 @@ function Main() {
     //Были получены данные из IndexedDB
     const onStoreDataExist = async (storeResult: any, allFavList: Array<any>, favouriteCityIndex: any, acc: number, idbGeoKey: string) => {
       const now: number = Date.now();
-      console.log('st data exist');
       //Если есть название города в избранном - переписываем его оттуда
       let cityName = favouriteCityIndex >= 0 ? allFavList[favouriteCityIndex].cityName : storeResult.data.cityName;
-      console.log('st exist cityNAme ' + cityName);
-      console.log('City name# ' + cityName);
-      console.log(storeResult);
       //Данные в БД слишком старые, загружаем актуальные
       if ((now - storeResult.date) > 60000) {
         const res = await parser.parseWeatherData(lat, lon);
@@ -170,7 +166,7 @@ function Main() {
       //Проверяем, есть ли у нас сохраненные данные о погоде в indexedDB по 'геоключу'
       const storeResult = await getIDBVal(idbGeoKey);
       storeResult ?  onStoreDataExist(storeResult, allFavList, favouriteCityIndex, acc, idbGeoKey): onStoreDataMissing(allFavList, favouriteCityIndex, acc, idbGeoKey);
-    }
+    };
     const onGetLinkParams = async (lat: any, lon: any) => {
       lat = roundDigit(lat, 1000);
       lon = roundDigit(lon, 1000);
@@ -182,7 +178,17 @@ function Main() {
       //Проверяем, есть ли у нас сохраненные данные о погоде в indexedDB по 'геоключу'
       const storeResult = await getIDBVal(idbGeoKey);
       storeResult ?  onStoreDataExist(storeResult, allFavList, favouriteCityIndex, acc, idbGeoKey): onStoreDataMissing(allFavList, favouriteCityIndex, acc, idbGeoKey);
-    }
+    };
+    //Не удалось определить геолокацию
+    const onFailGeoPos = async () => {
+      //'Геоключ' для работы с IndexedDB
+      const idbGeoKey: string = `${lat}::${lon}`;
+      //Ищем в списке избранных городов запись с коррдинатами, совпадающими с текущими
+      const favouriteCityIndex = allFavList.findIndex((f: FavouriteCity) => f.lat === lat && f.lon === lon);
+      //Проверяем, есть ли у нас сохраненные данные о погоде в indexedDB по 'геоключу'
+      const storeResult = await getIDBVal(idbGeoKey);
+      storeResult ?  onStoreDataExist(storeResult, allFavList, favouriteCityIndex, acc, idbGeoKey): onStoreDataMissing(allFavList, favouriteCityIndex, acc, idbGeoKey);
+    };
     //Получаем настройки пользователя из IndexedDB и обновляем состояние
     const userSettings = await getUserSettings('user');
     
@@ -216,9 +222,10 @@ function Main() {
       else {
         //Если можно определить геолокацию пользователя
         if (navigator.geolocation){
-          navigator.geolocation.getCurrentPosition(onSuccesGeoPos);
+          navigator.geolocation.getCurrentPosition(onSuccesGeoPos, onFailGeoPos);
         }
         else {
+          /*
           //'Геоключ' для работы с IndexedDB
           const idbGeoKey: string = `${lat}::${lon}`;
           //Ищем в списке избранных городов запись с коррдинатами, совпадающими с текущими
@@ -226,6 +233,8 @@ function Main() {
           //Проверяем, есть ли у нас сохраненные данные о погоде в indexedDB по 'геоключу'
           const storeResult = await getIDBVal(idbGeoKey);
           storeResult ?  onStoreDataExist(storeResult, allFavList, favouriteCityIndex, acc, idbGeoKey): onStoreDataMissing(allFavList, favouriteCityIndex, acc, idbGeoKey);
+          */
+         onFailGeoPos();
         };
       };
     }
@@ -353,10 +362,10 @@ function Main() {
   }
   return (
     <div className='App'>
-      {loader}
       <div ref={addSideMenuRef}>
         <SideMenu open={menuState} lat={urlParams.lat} lon={urlParams.lon} parser={parser} cityList={fcl} onlineState={onlineStatus}/>
       </div>
+      {loader}
       <main className='Main-wrapper'>
         <div className={dayTimeWrapper}>
           <div className={`Main-current-weather-wrapper `}>

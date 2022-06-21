@@ -59,7 +59,8 @@
     position: relative;
     cursor: default;
 
-    ul {
+    .Lang-selector-ul,
+    .Lang-selector-ul-hide {
         position: absolute;
         left: 50%;
         z-index: +1;
@@ -71,16 +72,23 @@
         text-align: left;
         //box-shadow: 0 0 .1rem .1rem #ffffff98;
         box-shadow: 0 0 .2rem .1rem rgba(255,255,255,.1);
-        width: 80%;
+        width: 7rem;
+        transition: .3s;
+        opacity: 1;
 
         li {
             transition: .5s;
-            padding: .2rem .5rem;
+            padding: .3rem .5rem;
         }
         li:hover {
             color: #0e1b31;
             background-color: #fff;
         }
+    }
+    .Lang-selector-ul-hide {
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        z-index: -1;
     }
 }
 .Side-menu-select-wrapper {
